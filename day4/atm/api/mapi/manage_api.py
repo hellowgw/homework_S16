@@ -53,12 +53,25 @@ def modify_quota(username, quota_number):
         ret = '没有找到用户 %s 的账号信息' % username
     return ret
 
+
 def lock_user(username):
-    pass
+    """ 功能:锁定用户
+        argv: 用户名
+        用户信息的列表中最后一位info_dic[2]的
+        值.标识的是用户状态.
+        数字 0 表示用户状态可用
+        数字 1 表示用户状态锁定
+    """
+    info_dic = read_info()
+    if username in info_dic:
+        info_dic[username][2] = 1
+        write_info(info_dic)
+        ret = '已经将用户 {0} 锁定'.format(username)
+    else:
+        ret = '没有找到用户 {0} 的账号信息'.format(username)
+    return ret
 
-a = {
-    'wgw': ['wgw123', 15000, '0']
-}
+# a = {
+#     'wgw': ['wgw123', 15000, 1]
+# }
 
-#print(adduser(a))
-print(modify_quota('wgw', 30000))
