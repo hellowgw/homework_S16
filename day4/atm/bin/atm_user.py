@@ -8,6 +8,7 @@ sys.path.append(base_dir)
 
 from api.uapi.userapi import *
 from core.auth_user import auth
+from core.recordlog import save_log
 
 
 @auth
@@ -18,15 +19,19 @@ def start_run(user, serv_dic):
     if service_id == 1:
         money = int(input('请输入要存入的金额:  '))
         result = repayment(user, money)
+        save_log(user, result)
         print(result)
     elif service_id == 2:
         money = int(input('请输入要取出的金额:  '))
         result = takemoney(user, money)
+        save_log(user, result)
         print(result)
     elif service_id == 3:
         to_user = input('请输入对方的账号:  ')
         money = int(input('请输入要转账的金额:  '))
         result = transfer(user, to_user, money)
+        save_log(user, result)
+        save_log(to_user, result)
         print(result)
     elif service_id == 4:
         print('print log')

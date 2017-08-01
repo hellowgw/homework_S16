@@ -7,6 +7,7 @@ print(base_dir)
 sys.path.append(base_dir)
 
 from api.mapi.manage_api import *
+from core.recordlog import save_log
 
 
 def start_backend(service_dic):
@@ -19,15 +20,18 @@ def start_backend(service_dic):
         quota = int(input('输入用户额度: '))
         user_dic = {user: [pwd, quota, 0]}
         result = add_user(user_dic)
+        save_log('admin', result)
         print(result)
     elif service_id == 2:
         user = input('输入用户名:  ')
         quota = int(input('输入用户额度: '))
         result = modify_quota(user, quota)
+        save_log('admin', result)
         print(result)
     elif service_id == 3:
         user = input('输入用户名:  ')
         result = lock_user(user)
+        save_log('admin', result)
         print(result)
     else:
         print('没有这个选项')

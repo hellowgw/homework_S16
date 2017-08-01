@@ -9,7 +9,7 @@ def repayment(username, repay_number):
     if username in info_dic:
         info_dic[username][1] = info_dic[username][1] + repay_number
         write_info(info_dic)
-        ret = '新用户 {0} 还款 {1}元 成功'.format(username, repay_number)
+        ret = '用户 {0} 还款 {1}元 成功'.format(username, repay_number)
     else:
         ret = '用户 {0} 不存在!!'.format(username)
     return ret
@@ -34,7 +34,9 @@ def transfer(src_name, dst_name, transfer_number):
         if dst_name in info_dic:
             if info_dic[src_name][1] - transfer_number >= 0:
                 info_dic[src_name][1] = info_dic[src_name][1] - transfer_number
+                print(info_dic[src_name][1])
                 info_dic[dst_name][1] = info_dic[dst_name][1] + transfer_number
+                print(info_dic)
                 write_info(info_dic)
                 ret = '用户 {0} 成功转账给用户 {1} {2}元'.format(src_name, dst_name, transfer_number)
             else:

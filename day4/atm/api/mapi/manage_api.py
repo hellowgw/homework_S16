@@ -71,7 +71,4 @@ def lock_user(username):
         ret = '没有找到用户 {0} 的账号信息'.format(username)
     return ret
 
-# a = {
-#     'wgw': ['wgw123', 15000, 1]
-# }
 
